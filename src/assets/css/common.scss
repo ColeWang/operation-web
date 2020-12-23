@@ -1,0 +1,96 @@
+// 主题色
+$primary: #1890ff;
+// 标题色
+$title: #333333;
+// 主文本色
+$text: #333333;
+// 次文本色
+$text-secondary: #666666;
+// 主字号
+$font-size: 14px;
+// 图标
+$icon: #909399;
+// 背景
+$background: #F2F5F8;
+// 边框
+$border: #DEE1E5;
+// 圆角
+$border-radius: 4px;
+// 失效 Disabled
+$disabled: #C1C2C5;
+// Error
+$error: #FF4F3C;
+// warning
+$warning: #FAAD14;
+// White
+$white: #FFF;
+// Black
+$black: #000;
+// 浮层阴影
+$box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+/* 设置宽高 */
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+/* translate 未知宽高 水平垂直居中 */
+@mixin center-translate($direction: both) {
+  position: absolute;
+  @if ($direction == both) {
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+  } @else if ($direction == horizontal) {
+    left: 50%;
+    -webkit-transform: translate3d(-50%, 0, 0);
+    transform: translate3d(-50%, 0, 0);
+  } @else if ($direction == vertical) {
+    top: 50%;
+    -webkit-transform: translate3d(0, -50%, 0);
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+/* 多行超出设置点点点 */
+@mixin box-clamp($v: 1) {
+  overflow: hidden;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $v;
+}
+
+/* 文字溢出点点点 */
+@mixin ellipsis-overflow {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* 绝对定位  参数顺序：上右下左 */
+@mixin position($position, $top: null, $right: null, $bottom: null, $left: null) {
+  position: $position;
+  @if ($top != "" and $top != null) {
+    top: $top;
+  }
+  @if ($right != "" and $right != null) {
+    right: $right;
+  }
+  @if ($bottom != "" and $bottom != null) {
+    bottom: $bottom;
+  }
+  @if ($left != "" and $left != null) {
+    left: $left;
+  }
+}
+
+/* 圆形 */
+@mixin circle($size: 12px) {
+  border-radius: 50%;
+  width: $size;
+  height: $size;
+}
+

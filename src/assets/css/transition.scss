@@ -1,0 +1,57 @@
+// 遮罩
+.x-mask-enter-active {
+  animation: mask-in .3s;
+}
+
+.x-mask-leave-active {
+  animation: mask-out .3s;
+}
+
+@keyframes mask-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes mask-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+// 弹框
+.x-dialog-enter-active {
+  animation: dialog-in .3s;
+}
+
+.x-dialog-leave-active {
+  animation: dialog-out .3s;
+}
+
+@keyframes dialog-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes dialog-out {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
