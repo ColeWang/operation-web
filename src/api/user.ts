@@ -16,7 +16,7 @@ export function login (data: Api.User.Login): Promise<Api.Res<Api.User.LoginData
 // 用户信息
 export function queryUserInfo (): Promise<Api.Res<Api.User.GetUserInfoData>> {
   return new Promise<Api.Res<Api.User.GetUserInfoData>>((resolve, reject) => {
-    request.get<Api.Res<Api.User.GetUserInfoData>>('/api/getUserInfo', )
+    request.get<Api.Res<Api.User.GetUserInfoData>>('/api/getUserInfo')
       .then((res) => {
         resolve(res.data)
       })
