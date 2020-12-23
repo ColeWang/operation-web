@@ -44,6 +44,7 @@ npm run build
 │   │   ├─ base-loading               // loading组件
 │   │   └─ main                       // 布局文件
 │   ├── config                    // 配置
+│   ├── mock                      // mock数据
 │   ├── plugin                    // 插件
 │   ├── routes                    // 路由
 │   ├── store                     // 公共数据管理
