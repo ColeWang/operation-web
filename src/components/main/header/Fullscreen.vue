@@ -9,12 +9,12 @@
 
 <script lang="ts">
   import { defineComponent, ref, Ref, onMounted, onBeforeUnmount } from 'vue'
-
-  const dom: any = document
+  import { on, off } from '@/util/dom'
 
   export default defineComponent({
     name: 'Fullscreen',
     setup () {
+      const dom: any = document
       const fullscreen: Ref<boolean> = ref(false)
 
       function handleFullscreen (val: boolean): void {
@@ -50,18 +50,18 @@
       }
 
       onMounted(() => {
-        dom.addEventListener('fullscreenchange', fullscreenChange, false)
-        dom.addEventListener('mozfullscreenchange', fullscreenChange, false)
-        dom.addEventListener('webkitfullscreenchange', fullscreenChange, false)
-        dom.addEventListener('msfullscreenchange', fullscreenChange, false)
+        on(dom, 'fullscreenchange', fullscreenChange, false)
+        on(dom, 'mozfullscreenchange', fullscreenChange, false)
+        on(dom, 'webkitfullscreenchange', fullscreenChange, false)
+        on(dom, 'msfullscreenchange', fullscreenChange, false)
         fullscreen.value = isVideoInFullscreen()
       })
 
       onBeforeUnmount(() => {
-        dom.removeEventListener('fullscreenchange', fullscreenChange, false)
-        dom.removeEventListener('mozfullscreenchange', fullscreenChange, false)
-        dom.removeEventListener('webkitfullscreenchange', fullscreenChange, false)
-        dom.removeEventListener('msfullscreenchange', fullscreenChange, false)
+        off(dom, 'fullscreenchange', fullscreenChange, false)
+        off(dom, 'mozfullscreenchange', fullscreenChange, false)
+        off(dom, 'webkitfullscreenchange', fullscreenChange, false)
+        off(dom, 'msfullscreenchange', fullscreenChange, false)
       })
 
       return {

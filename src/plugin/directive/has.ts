@@ -4,7 +4,7 @@ import { hasOneOf } from '@/util/oneOf'
 import store from '@/store'
 
 const has: Directive<any, string | number | string[] | number[] | undefined> = {
-  mounted (element: HTMLElement, binding) {
+  mounted (el: Element, binding) {
     if (typeof binding.value !== 'undefined') {
       let target: Array<string | number>
       if (isArray(binding.value)) {
@@ -13,7 +13,7 @@ const has: Directive<any, string | number | string[] | number[] | undefined> = {
         target = [binding.value]
       }
       if (!hasOneOf(target, store.state.user.userInfo.access)) {
-        element.remove()
+        el.remove()
       }
     }
   }

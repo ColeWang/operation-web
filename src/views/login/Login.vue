@@ -31,7 +31,7 @@
       </div>
     </div>
     <div class="footer-wrap">
-      <p>copyright@2019&nbsp;高灯科技&nbsp;All&nbsp;Rights&nbsp;Reserved</p>
+      <p>copyright@2019&nbsp;XX科技&nbsp;All&nbsp;Rights&nbsp;Reserved</p>
     </div>
   </div>
 </template>

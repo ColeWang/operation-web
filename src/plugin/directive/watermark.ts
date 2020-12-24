@@ -27,7 +27,7 @@ function buildTargetImg (text: string): string {
   return targetImg
 }
 
-function createWatermark (element: HTMLElement, target: string): void {
+function createWatermark (el: HTMLElement, target: string): void {
   const markNode: HTMLElement = document.createElement('div')
   markNode.style.position = 'absolute'
   markNode.style.zIndex = '50'
@@ -39,13 +39,13 @@ function createWatermark (element: HTMLElement, target: string): void {
   markNode.style.pointerEvents = 'none'
   markNode.style.backgroundImage = `url("${target}")`
   markNode.style.backgroundSize = '160px 160px'
-  element.style.position = 'relative'
-  element.appendChild(markNode)
+  el.style.position = 'relative'
+  el.appendChild(markNode)
   const mo: MutationObserver = new MutationObserver(() => {
-    element.removeChild(markNode)
+    el.removeChild(markNode)
     markNode.remove()
     mo.disconnect()
-    fire(element)
+    fire(el)
   })
   mo.observe(markNode, {
     attributes: true,
@@ -53,20 +53,20 @@ function createWatermark (element: HTMLElement, target: string): void {
   })
 }
 
-function fire (element: HTMLElement): void {
+function fire (el: HTMLElement): void {
   if (targetImg) {
-    createWatermark(element, targetImg)
+    createWatermark(el, targetImg)
   } else {
     const depText: string | undefined = getUsername()
     if (depText) {
-      createWatermark(element, buildTargetImg(depText))
+      createWatermark(el, buildTargetImg(depText))
     }
   }
 }
 
 const watermark: Directive = {
-  mounted (element: HTMLElement) {
-    fire(element)
+  mounted (el: Element) {
+    fire((el as HTMLElement))
   }
 }
 

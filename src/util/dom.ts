@@ -1,28 +1,36 @@
-type EventType = keyof HTMLElementEventMap
-
-interface Listener<K extends EventType> {
-  (this: HTMLElement, ev: HTMLElementEventMap[K]): any;
+export function on (
+  el: Element,
+  type: string,
+  listener: EventListener,
+  options?: boolean | EventListenerOptions
+): void {
+  el.addEventListener(type, listener, options)
 }
 
-export function on<K extends EventType> (element: HTMLElement, type: K, listener: Listener<K>): void {
-  element.addEventListener(type, listener, false)
+export function off (
+  el: Element,
+  type: string,
+  listener: EventListener,
+  options?: boolean | EventListenerOptions
+): void {
+  el.removeEventListener(type, listener, options)
 }
 
-export function off<K extends EventType> (element: HTMLElement, type: K, listener: Listener<K>): void {
-  element.removeEventListener(type, listener, false)
-}
-
-export function once<K extends EventType> (element: HTMLElement, type: K, fn: Function): void {
-  function listener () {
-    // eslint-disable-next-line
-    fn.apply(undefined, arguments)
-    off<K>(element, type, listener)
+export function once (
+  el: Element,
+  type: string,
+  listener: EventListener,
+  options?: boolean | EventListenerOptions
+): void {
+  function handler (evt: Event): void {
+    listener.call(undefined, evt)
+    off(el, type, handler, options)
   }
 
-  on<K>(element, type, listener)
+  on(el, type, handler, options)
 }
 
-export function hasClass (node: HTMLElement, className: string): boolean {
+export function hasClass (node: Element, className: string): boolean {
   if (node.classList) {
     return node.classList.contains(className)
   }
@@ -30,7 +38,7 @@ export function hasClass (node: HTMLElement, className: string): boolean {
   return ` ${originClass} `.indexOf(` ${className} `) > -1
 }
 
-export function addClass (node: HTMLElement, className: string): void {
+export function addClass (node: Element, className: string): void {
   if (node.classList) {
     node.classList.add(className)
   } else {
@@ -40,7 +48,7 @@ export function addClass (node: HTMLElement, className: string): void {
   }
 }
 
-export function removeClass (node: HTMLElement, className: string): void {
+export function removeClass (node: Element, className: string): void {
   if (node.classList) {
     node.classList.remove(className)
   } else {
