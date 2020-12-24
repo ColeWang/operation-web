@@ -17,6 +17,7 @@
 <script lang="ts">
   import { defineComponent, ref, Ref, onMounted, onBeforeUnmount } from 'vue'
   import { useRouter, Router } from 'vue-router'
+  import { homeName } from '@/config'
 
   export default defineComponent({
     name: "ErrorContent",
@@ -31,7 +32,7 @@
       let timer: number | null = null
 
       function backHome(): void {
-        router.replace({ name: 'home' })
+        router.replace({ name: homeName })
       }
 
       function backPrev(): void {
