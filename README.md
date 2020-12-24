@@ -57,8 +57,6 @@ npm run build
 │   └── README.md                 // help 规范 
 ├── .env.alpha                  // 测试环境
 ├── .env.development            // 开发环境
-├── .env.ets                    // ets环境
-├── .env.uat                    // uat环境
 ├── .eslintrc.js                // eslint
 ├── package.json                // package
 └── README.md                   // help
