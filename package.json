@@ -9,10 +9,6 @@
     "lint": "vue-cli-service lint",
     "build:dev": "vue-cli-service build --mode development",
     "build:test": "vue-cli-service build --mode alpha",
-    "build:tsb": "vue-cli-service build --mode tsb",
-    "build:uat": "vue-cli-service build --mode uat",
-    "build:ets": "vue-cli-service build --mode ets",
-    "build:pre": "vue-cli-service build --mode pre",
     "build": "vue-cli-service build",
     "report": "vue-cli-service build --report"
   },

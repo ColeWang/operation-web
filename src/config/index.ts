@@ -10,42 +10,20 @@ interface EnvObj {
   }
 }
 
-enum EnvKey {
-  DEVELOPMENT = 'development',
-  ALPHA = 'alpha',
-  TSB = 'tsb',
-  UAT = 'uat',
-  ETS = 'ets',
-  PRE = 'pre',
-  PRODUCTION = 'production'
-}
-
 // 环境变量
 const evn: EnvObj = {
-  [EnvKey.DEVELOPMENT]: {
+  'development': {
     baseURL: '',
   },
-  [EnvKey.ALPHA]: {
+  'alpha': {
     baseURL: '',
   },
-  [EnvKey.TSB]: {
-    baseURL: '',
-  },
-  [EnvKey.UAT]: {
-    baseURL: '',
-  },
-  [EnvKey.ETS]: {
-    baseURL: '',
-  },
-  [EnvKey.PRE]: {
-    baseURL: '',
-  },
-  [EnvKey.PRODUCTION]: {
+  'production': {
     baseURL: '',
   }
 }
 
-const NODE_ENV: EnvKey = process.env.NODE_ENV
+const NODE_ENV: string = process.env.NODE_ENV
 
 export function baseURL (): string {
   return evn[NODE_ENV].baseURL
