@@ -1,4 +1,4 @@
-import { App, Component } from 'vue'
+import { App, Component, Plugin } from 'vue'
 import {
   Modal,
   Space,
@@ -17,7 +17,7 @@ const OIcon: Component = (createFromIconfontCN({
   scriptUrl: require('@/assets/icon/iconfont.js')
 }) as Component)
 
-const components = [
+const components: Array<Plugin> = [
   Modal,
   Space,
   Row,
@@ -32,8 +32,8 @@ const components = [
 
 function plugin (app: App<Element>): void {
   app.component('o-icon', OIcon)
-  components.map((component) => {
-    app.use(component)
+  components.map((item) => {
+    app.use(item)
   })
 }
 

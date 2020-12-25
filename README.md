@@ -12,9 +12,8 @@ redIs ~
 ### 部署步骤
 
 #### 1. 添加系统环境变量
-```javascript
-// 创建.env文件
-NODE_ENV="production" // production, alpha, development, ets, uat
+```
+NODE_ENV="production"
 ```
 
 #### 2. 安装node运行环境
