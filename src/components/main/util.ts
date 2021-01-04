@@ -12,17 +12,6 @@ export interface MenuItem {
 }
 
 /**
- * 路由权限效验
- */
-function showThisMenuEle (item: RouteRecordRaw, access: Array<string | number>): boolean {
-  if (item.meta && item.meta.access && item.meta.access.length) {
-    return hasOneOf<string | number>(item.meta.access, access)
-  } else {
-    return true
-  }
-}
-
-/**
  * 判断子元素 children
  */
 function hasChild (item: RouteRecordRaw): boolean {
@@ -32,9 +21,9 @@ function hasChild (item: RouteRecordRaw): boolean {
 /**
  * hasAccess
  */
-function hasAccess (access: Array<string | number>, route: RouteRecordRaw): boolean {
-  if (route.meta && route.meta.access) {
-    return hasOneOf(access, route.meta.access)
+function hasAccess (route: RouteRecordRaw, access: Array<string | number>): boolean {
+  if (route.meta && route.meta.access && route.meta.access.length) {
+    return hasOneOf<string | number>(access, route.meta.access)
   } else {
     return true
   }
@@ -52,10 +41,10 @@ export function getMenuList (routers: RouteRecordRaw[] = [], access: Array<strin
         name: (item.name as string),
         meta: item.meta
       }
-      if (hasChild(item) && showThisMenuEle(item, access)) {
+      if (hasChild(item) && hasAccess(item, access)) {
         obj.children = getMenuList(item.children, access)
       }
-      if (showThisMenuEle(item, access)) {
+      if (hasAccess(item, access)) {
         arr.push(obj)
       }
     }
@@ -73,13 +62,13 @@ export function showChildren (item: MenuItem): boolean {
 /**
  * 权鉴
  */
-export function canTurnTo (name: string, access: Array<string | number>, routes: RouteRecordRaw[]): boolean {
+export function canTurnTo (name: string, routes: RouteRecordRaw[], access: Array<string | number>): boolean {
   function routePermissionJudge (list: RouteRecordRaw[]): boolean {
     return list.some((item) => {
       if (item.children && item.children.length) {
         return routePermissionJudge(item.children)
       } else if (item.name === name) {
-        return hasAccess(access, item)
+        return hasAccess(item, access)
       }
     })
   }

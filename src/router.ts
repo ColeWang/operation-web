@@ -14,7 +14,7 @@ const router: Router = createRouter({
 })
 
 function turnTo (to: RouteLocationNormalized, access: Array<string | number>, next: NavigationGuardNext): void {
-  if (canTurnTo((to.name as string), access, routes)) {
+  if (canTurnTo((to.name as string), routes, access)) {
     next()
   } else {
     next({ replace: true, name: 'error-401' })
