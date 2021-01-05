@@ -13,7 +13,7 @@ const router: Router = createRouter({
   routes
 })
 
-function turnTo (to: RouteLocationNormalized, access: Array<string | number>, next: NavigationGuardNext): void {
+function turnTo (to: RouteLocationNormalized, next: NavigationGuardNext, access: Array<string | number>): void {
   if (canTurnTo((to.name as string), routes, access)) {
     next()
   } else {
@@ -36,12 +36,12 @@ router.beforeEach((to, from, next) => {
     next({ name: homeName })
   } else {
     if (store.state.user.userInfo.hasGetInfo) {
-      turnTo(to, store.state.user.userInfo.access, next)
+      turnTo(to, next, store.state.user.userInfo.access)
     } else {
       baseLoading.show()
       store.dispatch(GET_USER_INFO)
         .then((userInfo: UserInfo) => {
-          turnTo(to, userInfo.access, next)
+          turnTo(to, next, userInfo.access)
         })
         .catch((err) => {
           removeUsername()
