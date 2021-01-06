@@ -22,8 +22,10 @@
   import { defineComponent } from 'vue'
   import { UserOutlined } from '@ant-design/icons-vue'
   import { Avatar, Dropdown } from 'ant-design-vue'
-  import { removeToken, removeUsername } from '@/common/auth'
   import { useRouter, Router } from 'vue-router'
+  import { removeToken, removeUsername } from '@/common/auth'
+  import { REMOVE_USER_INFO } from '@/store/modules/user'
+  import store from '@/store'
 
   export default defineComponent({
     name: 'Avatar',
@@ -38,6 +40,7 @@
       function handleLogOut (): void {
         removeUsername()
         removeToken()
+        store.commit(REMOVE_USER_INFO)
         router.push({ name: 'login' })
       }
 

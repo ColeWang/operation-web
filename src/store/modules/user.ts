@@ -7,6 +7,8 @@ import { queryUserInfo } from '@/api/user'
 export const SET_USER_INFO = 'setUserInfo'
 // 获取用户信息
 export const GET_USER_INFO = 'getUserInfo'
+// 重置
+export const REMOVE_USER_INFO = 'removeUserInfo'
 
 export interface UserInfo {
   hasGetInfo: boolean;
@@ -30,6 +32,9 @@ const mutations: MutationTree<State> = {
   [SET_USER_INFO] (state, data: UserInfo): void {
     state.userInfo.hasGetInfo = data.hasGetInfo
     state.userInfo.access = data.access
+  },
+  [REMOVE_USER_INFO] (state): void {
+    state.userInfo.hasGetInfo = false
   }
 }
 
